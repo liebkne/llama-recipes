@@ -38,12 +38,12 @@ def main(
 ):
     if prompt_file is not None:
         assert os.path.exists(
-            prompt_file
+            prompt_file,
         ), f"Provided Prompt file does not exist {prompt_file}"
-        with open(prompt_file, "r") as f:
-            user_prompt = "\n".join(f.readlines())
+        with open(prompt_file) as f:
+            user_prompt = f.read()
     elif not sys.stdin.isatty():
-        user_prompt = "\n".join(sys.stdin.readlines())
+        user_prompt = sys.stdin.read()
     else:
         print("No user prompt provided. Exiting.")
         sys.exit(1)
